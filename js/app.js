@@ -30,3 +30,38 @@ const hideLoader = () => {
 const showLoader = () => {
     loader.classList.add('show');
 }
+
+let currentPage = 1;
+const limit = 10;
+let total = 0;
+
+const hasMoreQuotes = (page, limit, total) => {
+    const startIndex = (page - 1) * limit + 1;
+    return total === 0 || startIndex < total;
+};
+
+const loadQuotes = async (page, limit) => {
+
+    // show the loader
+    showLoader();
+
+    // 0.5 second later
+    setTimeout(async () => {
+        try {
+            // if having more quotes to fetch
+            if (hasMoreQuotes(page, limit, total)) {
+                // call the API to get quotes
+                const response = await getQuotes(page, limit);
+                // show quotes
+                showQuotes(response.data);
+                // update the total
+                total = response.total;
+            }
+        } catch (error) {
+            console.log(error.message);
+        } finally {
+            hideLoader();
+        }
+    }, 500);
+
+};
