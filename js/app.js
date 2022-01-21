@@ -9,3 +9,24 @@ const getQuotes = async(page, limit) => {
         console.log(e);
     }
 }
+
+const showQuotes = (quotes) => {
+    for(const quote of quotes){
+        const newQuoteEl = document.createElement('blockquote');
+        newQuoteEl.classList.add('quote');
+        newQuoteEl.innerHTML = `
+            <span>${quote.id})</span>
+            ${quote.quote}
+            <footer>${quote.author}</footer>
+        `;
+        allQuotes.append(newQuoteEl);
+    }
+};
+
+const hideLoader = () => {
+    loader.classList.remove('show')
+}
+
+const showLoader = () => {
+    loader.classList.add('show');
+}
