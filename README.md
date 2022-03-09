@@ -1,3 +1,3 @@
 # programming-quotes
 
-Infinite Scroll a webpage with JavaScript.
+Practiced implementing infinite scroll functionality for a webpage with JavaScript.
